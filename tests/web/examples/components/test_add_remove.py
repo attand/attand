@@ -1,7 +1,7 @@
 import pytest
 import allure
 from playwright.sync_api import Page, expect
-from tests.web.pages.add_remove_page import AddRemovePage
+from tests.web.pages.examples.components.add_remove_page import AddRemovePage
 
 @allure.feature("Add/Remove Elements")
 class TestAddRemove:

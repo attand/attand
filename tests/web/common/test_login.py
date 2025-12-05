@@ -1,6 +1,6 @@
 import pytest
 from playwright.sync_api import Page
-from tests.web.pages.login_page import LoginPage
+from tests.web.pages.common.login_page import LoginPage
 from core.database.db_manager import get_db_manager
 import allure
 
