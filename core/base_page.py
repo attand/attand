@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page, Locator, expect
 from core.utils.logger import get_logger
 
@@ -28,3 +29,13 @@ class BasePage:
     def wait_for_selector(self, selector: str, timeout: int = 5000):
         self.logger.info(f"Waiting for selector: {selector}")
         self.page.wait_for_selector(selector, timeout=timeout)
+
+    def take_screenshot(self, name: str):
+        """Taking screenshot and attach to allure report"""
+        self.logger.info(f"Taking screenshot: {name}")
+        png_bytes = self.page.screenshot()
+        allure.attach(
+            png_bytes,
+            name=name,
+            attachment_type=allure.attachment_type.PNG
+        )

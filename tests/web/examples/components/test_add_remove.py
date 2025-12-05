@@ -20,12 +20,18 @@ class TestAddRemove:
             self.page_obj.add_element()
             self.page_obj.add_element()
 
+            # 截图
+            self.page_obj.take_screenshot("After adding 2 elements")
+
             # 验证点：此时应该有 2 个删除按钮
             expect(self.page_obj.page.locator(self.page_obj.DELETE_BUTTON)).to_have_count(2)
 
         with allure.step("Delete one element"):
             # 对应录制代码中的点击 "Delete"
             self.page_obj.delete_element()
+
+            # 截图
+            self.page_obj.take_screenshot("After deleting 1 element")
 
             # 验证点：删除一个后，应该剩 1 个
             expect(self.page_obj.page.locator(self.page_obj.DELETE_BUTTON)).to_have_count(1)
