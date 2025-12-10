@@ -32,8 +32,8 @@ class TestLogin:
 
         if expected == "success":
             with allure.step("Verify login success"):
-                assert "You logged into a secure area!" in self.login_page.get_flash_message_text()
-                assert self.login_page.is_logout_button_visible()
+                self.login_page.assert_text_contains(self.login_page.FLASH_MESSAGE, "You logged into a secure area!")
+                self.login_page.assert_element_visible(self.login_page.LOGOUT_BUTTON)
         else:
             with allure.step("Verify login failure"):
-                assert "Your username is invalid!" in self.login_page.get_flash_message_text()
+                self.login_page.assert_text_contains(self.login_page.FLASH_MESSAGE, "Your username is invalid!")

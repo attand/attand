@@ -1,5 +1,6 @@
 import os
 import allure
+import re
 from playwright.sync_api import Page, Locator, expect
 from core.utils.logger import get_logger
 
@@ -30,6 +31,21 @@ class BasePage:
     def wait_for_selector(self, selector: str, timeout: int = 5000):
         self.logger.info(f"Waiting for selector: {selector}")
         self.page.wait_for_selector(selector, timeout=timeout)
+
+    def assert_text_contains(self, selector: str, text: str):
+        """Assert that the element contains the specified text."""
+        self.logger.info(f"Asserting element {selector} contains text: {text}")
+        expect(self.page.locator(selector)).to_contain_text(text)
+
+    def assert_element_visible(self, selector: str):
+        """Assert that the element is visible."""
+        self.logger.info(f"Asserting element {selector} is visible")
+        expect(self.page.locator(selector)).to_be_visible()
+
+    def assert_url_contains(self, text: str):
+        """Assert that the URL contains the specified text."""
+        self.logger.info(f"Asserting URL contains text: {text}")
+        expect(self.page).to_have_url(re.compile(text))
 
     def take_screenshot(self, name: str):
         """Taking screenshot and attach to allure report"""
