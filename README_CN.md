@@ -8,6 +8,7 @@
 *   **数据驱动测试 (DDT)**：从数据库（支持 MySQL）动态获取测试数据。
 *   **平台化思维**：架构设计旨在未来轻松集成其他类型的测试（API、移动端/Appium）。
 *   **自动等待与高可靠性**：利用 Playwright 内置的自动等待机制。
+*   **智能断言**：`BasePage` 内置断言辅助函数（如 `assert_text_contains`），提供更稳健的验证。
 *   **测试报告**：集成 Allure 生成全面的测试报告。
 *   **CI/CD**：提供现成的 `Jenkinsfile`。
 *   **代码生成**：提供辅助脚本以轻松录制测试。
@@ -24,7 +25,8 @@
 ├── tests/                  # 测试实现
 │   ├── web/                # Web UI 测试
 │   │   ├── pages/          # 页面对象
-│   │   └── test_login.py   # 示例测试
+│   │   └── common/         # 通用 Web 测试
+│   │       └── test_login.py # 示例测试
 │   └── api/                # 未来的 API 测试
 ├── scripts/                # 辅助脚本（例如：代码生成封装）
 ├── requirements.txt        # Python 依赖

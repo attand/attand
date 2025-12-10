@@ -8,6 +8,7 @@ This is a scalable, maintainable Web UI automation framework built with Python a
 *   **Data-Driven Testing (DDT)**: Fetches test data dynamically from a Database (MySQL support included).
 *   **Platform Ready**: Architecture is designed to easily plug in other types of testing (API, Mobile/Appium) in the future.
 *   **Auto-Wait & Reliability**: Leverages Playwright's built-in auto-waiting mechanisms.
+*   **Smart Assertions**: Custom `BasePage` assertion helpers (`assert_text_contains`, etc.) for robust verification.
 *   **Reporting**: Integrated with Allure for comprehensive test reports.
 *   **CI/CD**: Ready-to-use `Jenkinsfile`.
 *   **Code Generation**: Helper scripts to record tests easily.
@@ -24,7 +25,8 @@ This is a scalable, maintainable Web UI automation framework built with Python a
 ├── tests/                  # Test Implementations
 │   ├── web/                # Web UI Tests
 │   │   ├── pages/          # Page Objects
-│   │   └── test_login.py   # Example Test
+│   │   └── common/         # Common Web Tests
+│   │       └── test_login.py # Example Test
 │   └── api/                # Future API Tests
 ├── scripts/                # Helper scripts (e.g., codegen wrapper)
 ├── requirements.txt        # Python dependencies
