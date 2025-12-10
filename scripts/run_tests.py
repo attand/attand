@@ -25,10 +25,10 @@ def main():
     env["SCREENSHOT_DIR"] = screenshots_dir
 
     # 4. Construct Pytest Command
-    # Pass through any arguments provided to this script (e.g., test files)
+    # Use sys.executable -m pytest to ensure we use the same Python environment
     pytest_args = sys.argv[1:]
     cmd = [
-        "pytest",
+        sys.executable, "-m", "pytest",
         f"--alluredir={report_dir}",
         f"--output={playwright_dir}",
     ] + pytest_args
