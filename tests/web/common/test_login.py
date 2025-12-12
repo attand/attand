@@ -18,9 +18,16 @@ except Exception:
 class TestLogin:
 
     @pytest.fixture(scope="function", autouse=True)
-    def setup(self, page: Page):
+    def login_lifecycle(self, page: Page):
+        # Setup
         self.login_page = LoginPage(page)
         self.login_page.navigate_to()
+
+        yield
+
+        # Teardown: Clear cookies to ensure clean state for next test
+        print(f"\n[Teardown] Clearing cookies for {self.__class__.__name__}")
+        page.context.clear_cookies()
 
     @pytest.mark.parametrize("data", test_data)
     @allure.story("Login Data Driven Test")

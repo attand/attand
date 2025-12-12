@@ -8,11 +8,16 @@ from tests.web.pages.examples.components.add_remove_page import AddRemovePage
 class TestAddRemove:
 
     @pytest.fixture(scope="function", autouse=True)
-    def setup(self, page: Page):
-        # 初始化页面对象
+    def page_lifecycle(self, page: Page):
+        # Setup: 初始化并导航
         self.page_obj = AddRemovePage(page)
-        # 导航到目标页面 (这里我们演示从首页点击进去的流程，还原你的录制)
         self.page_obj.navigate_from_home()
+
+        yield
+
+        # Teardown: 模拟数据清理
+        # 实际项目中，这里可能会调用 API 删除创建的数据，或者重置页面状态
+        print("\n[Teardown] Cleaning up Add/Remove test context...")
 
     @allure.story("Add and Delete Elements")
     def test_add_remove_elements(self):
